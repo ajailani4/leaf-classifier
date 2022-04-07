@@ -17,7 +17,7 @@ species_names = ['Quercus suber', 'Salix atrocinera', 'Populus nigra', 'Alnus sp
 
 '''Preprocess the data'''
 # Split into input (images) and output (species) columns
-images, species = dataset.values[:, 1:], dataset.values[:, 0]
+images, species = dataset.values[:, 2:], dataset.values[:, 0]
 images = images.astype('float32')
 
 # Normalize labels
@@ -33,8 +33,8 @@ n_features = train_images.shape[1]
 
 # Setup the layers
 model = tf.keras.Sequential([
-  tf.keras.layers.Dense(100, activation='relu', kernel_initializer='he_normal', input_shape=(n_features,)),
-  tf.keras.layers.Dense(80, activation='relu', kernel_initializer='he_normal'),
+  tf.keras.layers.Dense(120, activation='relu', kernel_initializer='he_normal', input_shape=(n_features,)),
+  tf.keras.layers.Dense(110, activation='relu', kernel_initializer='he_normal'),
   tf.keras.layers.Dense(30, activation='softmax')
 ])
 
