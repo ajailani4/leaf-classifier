@@ -9,6 +9,12 @@ import matplotlib.pyplot as plt
 dataset_path = 'https://raw.githubusercontent.com/ajailani4/leaf-classification/main/leaf.csv?token=GHSAT0AAAAAABPBYOL4MOQTZFRIRJBINWA4YSW2LDQ'
 dataset = read_csv(dataset_path, header=None)
 
+species_names = ['Quercus suber', 'Salix atrocinera', 'Populus nigra', 'Alnus sp.', 'Quercus robur', 'Crataegus monogyna', 'Ilex aquifolium', 
+'Nerium oleander', 'Betula pubescens', 'Tilia tomentosa', 'Acer palmatum', 'Celtis sp.', 'Corylus avellana', 'Castanea sativa', 
+'Populus alba', 'Primula vulgaris', 'Erodium sp.', 'Bougainvillea sp.', 'Arisarum vulgare', 'Euonymus japonicus', 'Ilex perado ssp. azorica', 
+'Magnolia soulangeana', 'Buxus sempervirens', 'Urtica dioica', 'Podocarpus sp.', 'Acca sellowiana', 'Hydrangea sp.', 'Pseudosasa japonica', 
+'Magnolia grandiflora', 'Geranium sp.']
+
 '''Preprocess the data'''
 # Split into input (images) and output (species) columns
 images, species = dataset.values[:, 1:], dataset.values[:, 0]
@@ -49,18 +55,19 @@ test_loss, test_acc = model.evaluate(test_images, test_species)
 print('\nTrain accuracy: %.2f%%' % (train_acc*100))
 print('\nTest accuracy: %.2f%%' % (test_acc*100))
 
-# Make a prediction
+# Make a prediction for single data
 print('\nTest images\n', test_images)
 print('\nTest species\n', test_species)
 
-img = test_images[0]
+i = 0
+img = test_images[i]
 img = (np.expand_dims(img, 0))
 predictions = model.predict(img)
-print(predictions)
+print('\nPredictions:', predictions)
 print(
     '\nPredicted species: {} ({:2.0f}%) | Actual species: {}'.format(
-        np.argmax(predictions[0]),
-        100*np.max(predictions[0]),
-        'test'
+        species_names[np.argmax(predictions[i])],
+        100*np.max(predictions[i]),
+        species_names[test_species[i]]
     )
 )
