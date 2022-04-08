@@ -9,11 +9,13 @@ import matplotlib.pyplot as plt
 dataset_path = 'https://raw.githubusercontent.com/ajailani4/leaf-classification/main/leaf.csv?token=GHSAT0AAAAAABPBYOL4MOQTZFRIRJBINWA4YSW2LDQ'
 dataset = read_csv(dataset_path, header=None)
 
-species_names = ['Quercus suber', 'Salix atrocinera', 'Populus nigra', 'Alnus sp.', 'Quercus robur', 'Crataegus monogyna', 'Ilex aquifolium', 
-'Nerium oleander', 'Betula pubescens', 'Tilia tomentosa', 'Acer palmatum', 'Celtis sp.', 'Corylus avellana', 'Castanea sativa', 
-'Populus alba', 'Primula vulgaris', 'Erodium sp.', 'Bougainvillea sp.', 'Arisarum vulgare', 'Euonymus japonicus', 'Ilex perado ssp. azorica', 
-'Magnolia soulangeana', 'Buxus sempervirens', 'Urtica dioica', 'Podocarpus sp.', 'Acca sellowiana', 'Hydrangea sp.', 'Pseudosasa japonica', 
-'Magnolia grandiflora', 'Geranium sp.']
+species_names = [
+  'Quercus suber', 'Salix atrocinera', 'Populus nigra', 'Alnus sp.', 'Quercus robur', 'Crataegus monogyna', 'Ilex aquifolium', 
+  'Nerium oleander', 'Betula pubescens', 'Tilia tomentosa', 'Acer palmatum', 'Celtis sp.', 'Corylus avellana', 'Castanea sativa', 
+  'Populus alba', 'Primula vulgaris', 'Erodium sp.', 'Bougainvillea sp.', 'Arisarum vulgare', 'Euonymus japonicus', 'Ilex perado ssp. azorica', 
+  'Magnolia soulangeana', 'Buxus sempervirens', 'Urtica dioica', 'Podocarpus sp.', 'Acca sellowiana', 'Hydrangea sp.', 'Pseudosasa japonica', 
+  'Magnolia grandiflora', 'Geranium sp.'
+]
 
 '''Preprocess the data'''
 # Split into input (images) and output (species) columns
@@ -40,9 +42,9 @@ model = tf.keras.Sequential([
 
 # Compile the model
 model.compile(
-    optimizer='adam',
-    loss='sparse_categorical_crossentropy',
-    metrics=['accuracy']
+  optimizer='adam',
+  loss='sparse_categorical_crossentropy',
+  metrics=['accuracy']
 )
 
 '''Train the model'''
@@ -66,9 +68,9 @@ predictions = model.predict(img)
 print('\nPredictions:', predictions)
 print('\nTested image:', test_images[i])
 print(
-    '\nPredicted species: {} ({:2.0f}%) | Actual species: {}'.format(
-        species_names[np.argmax(predictions[i])],
-        100*np.max(predictions[i]),
-        species_names[test_species[i]]
-    )
+  '\nPredicted species: {} ({:2.0f}%) | Actual species: {}'.format(
+    species_names[np.argmax(predictions[i])],
+    100*np.max(predictions[i]),
+      species_names[test_species[i]]
+  )
 )
