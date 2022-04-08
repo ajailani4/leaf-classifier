@@ -24,9 +24,9 @@ images = images.astype('float32')
 species = LabelEncoder().fit_transform(species)
 
 # Split into train and test datasets
-train_images, test_images, train_species, test_species = train_test_split(images, species, test_size=0.1)
+train_images, test_images, train_species, test_species = train_test_split(images, species, test_size=0.2)
 print('Train images\n', train_images)
-print('\nTrain species\n', train_species)
+print('\nTrain species\n\n', train_species)
 
 '''Building the model'''
 n_features = train_images.shape[1]
@@ -55,7 +55,7 @@ test_loss, test_acc = model.evaluate(test_images, test_species)
 print('\nTrain accuracy: %.2f%%' % (train_acc*100))
 print('\nTest accuracy: %.2f%%' % (test_acc*100))
 
-# Make a prediction for single data
+'''Make predictions for a single data'''
 print('\nTest images\n', test_images)
 print('\nTest species\n', test_species)
 
@@ -64,6 +64,7 @@ img = test_images[i]
 img = (np.expand_dims(img, 0))
 predictions = model.predict(img)
 print('\nPredictions:', predictions)
+print('\nTested image:', test_images[i])
 print(
     '\nPredicted species: {} ({:2.0f}%) | Actual species: {}'.format(
         species_names[np.argmax(predictions[i])],
