@@ -3,7 +3,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import tensorflow as tf
 import numpy as np
-import matplotlib.pyplot as plt
 
 '''Load the datasets'''
 dataset_path = 'https://raw.githubusercontent.com/ajailani4/leaf-classification/main/leaf.csv?token=GHSAT0AAAAAABPBYOL4MOQTZFRIRJBINWA4YSW2LDQ'
