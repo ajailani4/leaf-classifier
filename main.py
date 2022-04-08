@@ -18,7 +18,7 @@ species_names = [
 ]
 
 '''Preprocess the data'''
-# Split into input (images) and output (species) columns
+# Split into input (features of images) and output (species) columns
 images, species = dataset.values[:, 2:], dataset.values[:, 0]
 images = images.astype('float32')
 
@@ -28,7 +28,8 @@ species = LabelEncoder().fit_transform(species)
 # Split into train and test datasets
 train_images, test_images, train_species, test_species = train_test_split(images, species, test_size=0.2)
 print('Train images\n', train_images)
-print('\nTrain species\n\n', train_species)
+print('\nTrain species\n', train_species)
+print('\n')
 
 '''Building the model'''
 n_features = train_images.shape[1]
